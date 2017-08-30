@@ -1,0 +1,6 @@
+service:
+  version: 1.x
+  js:
+    js/ng_directive/service.js: {}
+  dependencies:
+    - drupal_angular/angular.all

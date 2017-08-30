@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/_block--seggroup-radix-branding.scss"],"names":[],"mappings":"AAAA;EAEI,aAAY,EACb","file":"seggroup_radix.style.css","sourcesContent":[".block--seggroup-radix-branding{\n  img{\n    height: 64px;\n  }\n}\n"]}

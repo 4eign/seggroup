@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * Default template for block.
+ */
+#}
+{%
+set classes = [
+'block',
+bundle ? 'block--' ~ bundle|clean_class,
+id ? 'block--' ~ id|clean_class,
+]
+%}
+
+<div{{ attributes.addClass(classes)|without('id') }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2 class="header center">{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  <div class="container">
+    <div class="block__content">
+      {% block content %}
+        <div class="row">
+          <div class="col s12 m12 l12">
+            <div class="card-panel teal hoverable">
+              <span class="white-text">
+                {{ content }}
+              </span>
+            </div>
+          </div>
+        </div>
+      {% endblock %}
+    </div>
+  </div>
+</div>

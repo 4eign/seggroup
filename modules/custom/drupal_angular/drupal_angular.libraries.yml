@@ -1,0 +1,15 @@
+angular.angularjs:
+  js:
+   bower_components/angular/angular.js: { minified: true }
+
+angular.request:
+  js:
+   bower_components/angular-resource/angular-resource.js: { minified: true }
+
+angular.all:
+  version: 1.x
+  js:
+    js/app.js: {}
+  dependencies:
+    - drupal_angular/angular.angularjs
+    - drupal_angular/angular.request

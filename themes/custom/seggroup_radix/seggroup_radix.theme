@@ -1,0 +1,28 @@
+<?php
+/**
+ * @file
+ * Theme functions
+ */
+
+// Include all files from the includes directory.
+$includes_path = dirname(__FILE__) . '/includes/*.inc';
+foreach (glob($includes_path) as $filename) {
+  require_once dirname(__FILE__) . '/includes/' . basename($filename);
+}
+
+
+/**
+ * add tag to html head
+ */
+function seggroup_radix_preprocess_html(&$variables) {
+
+  $material_icons_link = [
+    '#tag' => 'link',
+    '#attributes' => [
+      'href' => 'https://fonts.googleapis.com/icon?family=Material+Icons',
+      'rel' => 'stylesheet',
+    ],
+  ];
+
+  $variables['page']['#attached']['html_head'][] = [$material_icons_link, 'material-icons'];
+}

@@ -1,0 +1,24 @@
+/* -----------------------------------------
+   HEADER
+----------------------------------------- */
+header{
+  &.navbar{
+    background-color: $primary-dark-blue;
+    @include border-radius(0px);
+    border: none;
+    margin-bottom: 0;
+    /* logo: Logo */
+    .region-logo{
+      padding: 0;
+      a.navbar-brand{
+        //padding: 15px 0 0 12px;
+        display: block;
+      }
+      .wrapper-logo{
+        img{
+          height: 37px;
+        }
+      }
+    }
+  }
+}
