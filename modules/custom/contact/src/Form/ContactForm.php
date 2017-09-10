@@ -2,10 +2,13 @@
 
 namespace Drupal\contact\Form;
 
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\ReplaceCommand;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Mail\MailManager;
+use Symfony\Component\Validator\Constraints\Null;
 
 /**
  * Class ContactForm.
@@ -51,7 +54,7 @@ class ContactForm extends FormBase {
     $form['message'] = array(
       '#type' => 'container',
       '#attributes' => [
-        'class' => 'balance-transfer-container',
+        'id' => 'messages-container',
       ],
     );
     
@@ -84,11 +87,6 @@ class ContactForm extends FormBase {
       '#title' => $this->t('Mensaje'),
       '#title_display' => 'after',
       '#maxlength' => 300,
-      '#attributes' => array(
-        'class' => array(
-          'materialize-textarea'
-        )
-      ),
       '#field_prefix' => '<i class="material-icons prefix">chat</i>',
     ];
   
@@ -98,7 +96,7 @@ class ContactForm extends FormBase {
       //'#submit' => array('::sTransferBalance'),
       '#ajax' => [
         'callback' => '::sendInformationCallback',
-        'wrapper' => 'transfer-balance-wrapper',
+        'wrapper' => 'messages-container',
         'method' => 'replace'
       ],
     ];
@@ -134,7 +132,8 @@ class ContactForm extends FormBase {
     try{
       $module = 'contact';
       $key = 'test';
-      $to ='somosgruposeg@gmail.com';
+      //$to ='somosgruposeg@gmail.com';
+      $to = \Drupal::config('system.site')->get('mail');
       
       $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
       
@@ -151,14 +150,20 @@ class ContactForm extends FormBase {
         drupal_set_message(t('There was a problem sending your message and it was not sent.'), 'error');
       }
       else {
-        drupal_set_message(t('Your message has been sent.'));
+        \Drupal::logger('luis')->error('Mensaje enviado correctamente', (array)$result);
+        drupal_set_message(t('Mensaje enviado correctamente.'),'status');
+        $response = new AjaxResponse();
+        $response->addCommand(new ReplaceCommand(
+          '#messages-container',
+          '<p>mensaje enviado correctamente</p>'));
       }
     }catch(\Exception $e){
+      watchdog_exception('luis',$e);
       \Drupal::logger('luis')->error('error en callback', (array)$e);
       drupal_set_message('error');
     }
-    //echo "successMessage('helllo');";
-    //echo "<script> successMessage('helllo2'); </script>";
+    //echo "successMessage('hello');";
+    //echo "<script> successMessage('hello2'); </script>";
     
   }
 

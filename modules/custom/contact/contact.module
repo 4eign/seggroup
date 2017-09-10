@@ -47,14 +47,12 @@ function contact_theme($existing, $type, $theme, $path) {
  * @param $params
  */
 function contact_mail($key, &$message, $params) {
-  $data['user'] = $params['account'];
   $options['langcode'] = $message['langcode'];
   //user_mail_tokens($variables, $data, $options);
   switch($key) {
     case 'test':
-      //$message['from'] = \Drupal::config('system.site')->get('mail');
-      $message['from'] = 'somosgruposeg@gmail.com';
-      $message['subject'] = t('Notificación: @email', array('@email' => $params['email']), $options);
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('Notificacion: @email', array('@email' => $params['email']), $options);
       //$message['body'][] = $params['message'];
       $message['body'][] = t(
         'mi nombre es: @name 

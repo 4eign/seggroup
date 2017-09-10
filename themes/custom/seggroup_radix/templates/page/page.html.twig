@@ -27,44 +27,6 @@
   <div class="container-fluid">
     {{ page.content }}
   </div>
-  {#
-  <div class="divider"></div>
-  <div class="row">
-
-    <h2 class="header center">Contactenos</h2>
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s12 m6 l6">
-          <i class="material-icons prefix">account_circle</i>
-          <input id="first_name" type="text" class="validate">
-          <label for="first_name">Nombre</label>
-        </div>
-        <div class="input-field col s12 m6 l6">
-          <i class="material-icons prefix">phone</i>
-          <input id="icon_telephone" type="tel" class="validate">
-          <label for="icon_telephone">Teléfono</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">contact_mail</i>
-          <input id="email" type="email" class="validate">
-          <label for="email">Correo electrónico</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">chat</i>
-          <textarea id="textarea1" class="materialize-textarea"></textarea>
-          <label for="textarea1">Mensaje</label>
-        </div>
-      </div>
-      <button class="btn waves-effect waves-light right" type="submit" name="action">Enviar
-        <i class="material-icons right">send</i>
-      </button>
-    </form>
-  </div>
-  #}
 </main>
 
 <footer class="page-footer teal accent-3">
@@ -85,7 +47,8 @@
       <div class="col l4 m6 s12 center">
         <i class="large material-icons">settings_input_composite</i>
         <h5 class="white-text">Visión</h5>
-        <p class="grey-text text-lighten-4"><b>SEG GROUP</b> será en el 2020 el mejor aliado estratégico para las diferentes empresas y colaboradores, garantizando calidad en sus servicios y logrando la confiabilidad y seguridad de sus clientes.
+        <p class="grey-text text-lighten-4">
+          <b>SEG GROUP</b> será en el 2020 el mejor aliado estratégico para las diferentes empresas y colaboradores, garantizando calidad en sus servicios y logrando la confiabilidad y seguridad de sus clientes.
         </p>
         {#
         {{ page.footer }}
@@ -101,8 +64,15 @@
   </div>
   <div class="footer-copyright">
     <div class="container">
-      © 2017 4eign
-      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+      <div class="row">
+      <div class="col l3 m3 s12">
+        <p>© 2017 4eign</p>
+      </div>
+      <div class="col l7 m7 s12 right">
+        {{ page.footer }}
+      {#<a class="grey-text text-lighten-4 right" href="#!">More Links</a>#}
+      </div>
+      </div>
     </div>
   </div>
 </footer>
