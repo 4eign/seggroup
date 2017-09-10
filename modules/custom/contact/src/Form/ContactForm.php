@@ -3,12 +3,12 @@
 namespace Drupal\contact\Form;
 
 use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\InvokeCommand;
 use Drupal\Core\Ajax\ReplaceCommand;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Mail\MailManager;
-use Symfony\Component\Validator\Constraints\Null;
 
 /**
  * Class ContactForm.
@@ -152,16 +152,28 @@ class ContactForm extends FormBase {
       else {
         \Drupal::logger('luis')->error('Mensaje enviado correctamente', (array)$result);
         drupal_set_message(t('Mensaje enviado correctamente.'),'status');
+        /*
         $response = new AjaxResponse();
         $response->addCommand(new ReplaceCommand(
           '#messages-container',
           '<p>mensaje enviado correctamente</p>'));
+        return $response;
+        */
+        $response = new AjaxResponse();
+        $response->addCommand(new InvokeCommand('html', 'trigger', array(
+          'Materialize.toast("hello")',
+          array(
+            'foo' => 'bar',
+          ),
+        )));
       }
     }catch(\Exception $e){
       watchdog_exception('luis',$e);
       \Drupal::logger('luis')->error('error en callback', (array)$e);
       drupal_set_message('error');
     }
+  
+    //return $form;
     //echo "successMessage('hello');";
     //echo "<script> successMessage('hello2'); </script>";
     
