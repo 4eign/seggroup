@@ -95,8 +95,8 @@ class ContactForm extends FormBase {
       //'#submit' => array('::sTransferBalance'),
       '#ajax' => [
         'callback' => '::sendInformationCallback',
-        'wrapper' => 'messages-container',
-        'method' => 'replace'
+        //'wrapper' => 'messages-container',
+        //'method' => 'replace'
       ],
     ];
 
